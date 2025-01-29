@@ -4,7 +4,7 @@ export const mockExam: Exam = {
   id: '1',
   title: 'Midterm Exam',
   description: 'This exam covers chapters 1-5',
-  duration: 120,
+  duration: 5,
   questions: [
     {
       id: '1',
