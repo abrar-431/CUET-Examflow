@@ -1,4 +1,3 @@
-import React from 'react';
 import { CourseList } from '../../components/courses/CourseList';
 import { CourseStats } from '../../components/courses/CourseStats';
 import { useCourses } from '../../hooks/useCourses';

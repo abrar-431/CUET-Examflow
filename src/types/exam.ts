@@ -1,9 +1,14 @@
 export interface Question {
-  id: string;
+  id: number;
   text: string;
-  type: 'multiple-choice' | 'short-answer';
-  options?: string[];
-  points: number;
+  options: string[];
+  correctAnswer: number;
+  course: string;
+}
+
+export interface Answer {
+  questionId: number;
+  selectedOption: number | null;
 }
 
 export interface Exam {

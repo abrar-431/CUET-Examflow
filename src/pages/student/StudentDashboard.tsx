@@ -1,5 +1,4 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import { StudentCourses } from './StudentCourses';
 import { StudentExams } from './StudentExams';
 import { StudentResults } from './StudentResults';
@@ -10,6 +9,7 @@ export function StudentDashboard() {
     { label: 'My Courses', path: 'courses' },
     { label: 'Exams', path: 'exams' },
     { label: 'Results', path: 'results' },
+    { label: 'Home', path: '/' },
   ];
 
   return (

@@ -1,16 +1,17 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { GraduationCap } from 'lucide-react';
+import { loginSchema } from '../utils/form';
 
 export function Navbar() {
+  const data = loginSchema;
+  console.log(data.role);
   return (
     <nav className="bg-white shadow-lg fixed w-full top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 py-2 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
-              <GraduationCap className="h-8 w-8 text-blue-600" />
-              <span className="font-bold text-xl text-gray-900">CUET</span>
+              <img className='w-1/4 rounded-lg' src="https://i.ibb.co.com/RkB7mP6M/logo.png" alt="" />
+              <span className="font-bold text-xl text-gray-900">CUET ExamFlow</span>
             </Link>
             <div className="hidden md:block ml-10">
               <div className="flex items-baseline space-x-4">

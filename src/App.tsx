@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Layout } from './components/Layout';
 import { Login } from './pages/Login';
 import { LandingPage } from './pages/LandingPage';
 import { StudentDashboard } from './pages/student/StudentDashboard';
@@ -8,6 +7,7 @@ import { TeacherDashboard } from './pages/teacher/TeacherDashboard';
 import { useAuthStore } from './store/authStore';
 import { StudentCourses } from './pages/student/StudentCourses';
 import AboutSection from './components/AboutUs';
+import { PaymentSuccess } from './pages/student/PaymentSuccess';
 
 function PrivateRoute({ children, allowedRole }: { children: React.ReactNode; allowedRole: 'student' | 'teacher' }) {
   const { user } = useAuthStore();
@@ -33,6 +33,7 @@ export function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/courses" element={<StudentCourses />} />
           <Route path="/about" element={<AboutSection />} />
+          <Route path="/payment/success" element={<PaymentSuccess />} />
           <Route path="/login" element={<Login />} />
           
           {/* Protected Routes */}

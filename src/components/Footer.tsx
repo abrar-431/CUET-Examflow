@@ -1,6 +1,5 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { GraduationCap, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -9,8 +8,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <GraduationCap className="h-8 w-8 text-blue-500" />
-              <span className="text-xl font-bold text-white">CUET</span>
+            <img className='w-1/4 rounded-lg' src="https://i.ibb.co.com/RkB7mP6M/logo.png" alt="" />
+              <span className="text-xl font-bold text-white">CUET ExamFlow</span>
             </div>
             <p className="text-sm">
               Chittagong University of Engineering & Technology
@@ -59,7 +58,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-800 text-center text-sm">
-          <p>© {new Date().getFullYear()} Chittagong University of Engineering and Technology. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} CUET ExamFlow. All rights reserved.</p>
         </div>
       </div>
     </footer>

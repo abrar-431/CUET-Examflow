@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ExamCard } from '../ExamCard';
 import { useExams } from '../../hooks/useExams';
@@ -23,10 +22,10 @@ export function ExamList({ role }: ExamListProps) {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {exams.map((exam) => (
         <ExamCard
-          key={exam.id}
+          key={exam._id}
           exam={exam}
           actionLabel={role === 'student' ? 'Take Exam' : 'Review Submissions'}
-          onAction={() => handleExamAction(exam.id)}
+          onAction={() => handleExamAction(exam._id)}
         />
       ))}
     </div>

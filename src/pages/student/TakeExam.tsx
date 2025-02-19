@@ -1,44 +1,54 @@
-import React from 'react';
+import { QuestionList } from './Exam/QuestionList';
+import { Question } from './Exam/Question';
+import { Results } from './Exam/Results';
+import { PenTool } from 'lucide-react';
+import { ExamProvider } from './Exam/ExamContext';
+import { Timer } from './Exam/Timer';
+import { Navigation } from './Exam/NavigationExam';
 import { useParams } from 'react-router-dom';
-import { Button } from '../../components/ui/Button';
-import { ExamTimer } from '../../components/exams/ExamTimer';
-import { QuestionDisplay } from '../../components/exams/QuestionDisplay';
-import { useExamSubmission } from '../../hooks/useExamSubmission';
-import { mockExam } from '../../utils/mockData';
+import { useExams } from '../../hooks/useExams';
+import { useEffect, useState } from 'react';
+import { questions } from './Exam/Data/Question';
 
 export function TakeExam() {
-  const { examId = '' } = useParams();
-  const { answers, isSubmitting, handleAnswerChange, submitExam } = useExamSubmission(examId);
+  const [finalquestions, setfinalQuestions] = useState([]);
+const { examId } = useParams();
+
+const { exams } = useExams();
+const exam = exams.find(exam => exam._id == examId);
+
+useEffect(() => {
+  if (exam) {
+    // Filter the questions based on the course of the selected exam
+    const newQuestions = questions.filter(question => question.course === exam.title);
+    setfinalQuestions(newQuestions);
+  }
+}, [exam]); // The effect will run when `exam` changes
+
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">{mockExam.title}</h2>
-        <ExamTimer duration={mockExam.duration} onTimeUp={submitExam} />
-      </div>
+    <ExamProvider>
+      <div className="min-h-screen bg-gray-50">
+        <header className="bg-white shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 py-4">
+            <div className="flex items-center space-x-2">
+              <PenTool className="w-6 h-6 text-blue-600" />
+              <h1 className="text-xl font-semibold text-gray-900">Online Examination - CUET ExamFlow</h1>
+            </div>
+          </div>
+        </header>
 
-      <p className="text-gray-600 mb-6">{mockExam.description}</p>
+        <main className="max-w-7xl mx-auto px-4 py-8">
+          <div className="relative min-h-[calc(100vh-12rem)]">
+            <QuestionList finalquestions={finalquestions} />
+            <Question finalquestions={finalquestions}  />
+            <Results />
+            <Timer />
+          </div>
+        </main>
 
-      <div className="space-y-8">
-        {mockExam.questions.map((question) => (
-          <QuestionDisplay
-            key={question.id}
-            question={question}
-            answer={answers[question.id] || ''}
-            onChange={(answer) => handleAnswerChange(question.id, answer)}
-          />
-        ))}
+        <Navigation />
       </div>
-
-      <div className="mt-8">
-        <Button
-          onClick={submitExam}
-          disabled={isSubmitting}
-          className="w-full"
-        >
-          {isSubmitting ? 'Submitting...' : 'Submit Exam'}
-        </Button>
-      </div>
-    </div>
+    </ExamProvider>
   );
 }

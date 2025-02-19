@@ -1,4 +1,3 @@
-import React from 'react';
 import { Exam } from '../types/exam';
 import { Calendar, Clock } from 'lucide-react';
 import { Button } from './ui/Button';
